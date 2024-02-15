@@ -63,15 +63,17 @@ def karatsuba_strs(x, y):
         # take the max length for equal alignment
         max_len = max(len(x), len(y))
 
-        base_2_power = 2 ** (math.ceil(math.log2(max_len)))
+        #base_2_power = 2 ** (math.ceil(math.log2(max_len)))
         
         # get the power of two greater or equal to the length of the max
         #base_2_power = 2 ** (max_len - 1).bit_length()
         #print(base_2_power)
+        if max_len % 2 == 1:
+            max_len += 1
 
         # pad x and y with zeros to make 2^n length
-        x = "0" * (base_2_power - len(x)) + x
-        y = "0" * (base_2_power - len(y)) + y
+        x = "0" * (max_len - len(x)) + x
+        y = "0" * (max_len - len(y)) + y
 
         # Recursive case x and/or y length > 1
         # Split the strs into left and right halves
@@ -122,14 +124,12 @@ def print_comparison_table():
         data['n'].append(2 ** n)
         data['T(n) plain'].append(stopTimeM - startTimeM)
         data['T(n) Karatsuba'].append(stopTimeK - startTimeK)
-        print(data['T(n) plain'])
-        print(data['T(n) Karatsuba'])
         
         dataFrame = pd.DataFrame(data)
 
     print(dataFrame)
 
-    '''
+    
 
     grph.figure("Plain vs. Karatsuba Multiplication Analysis Chart")
     grph.title('Plain vs. Karatsuba Multiplication')
@@ -145,7 +145,7 @@ def print_comparison_table():
     
     grph.legend()
     grph.show()
-    '''
+
 
 print_comparison_table()
 

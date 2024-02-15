@@ -96,7 +96,7 @@ def reconstruct(S,v,w):
     if max_loot != S[n - 1][C]: # if the value without the current item is different from the current maximum loot,
                                 # then that item is a part of the optimal solution
       
-      best_loot_list.append(n) # add the index of that item, as it is loot option to the list
+      best_loot_list.append(n) # add the index of that item to the list, as it is loot option
       
       C -= w[n] # subtract the current weight of the item from the current capacity C
    
@@ -122,5 +122,5 @@ v = [-1, 5, 4, 3, 2] # values
 #                      elements 1 through n-inclusive, for data.
 
 S=dyn_prog(v,w,C)
-print(np.matrix(S))
+#print(np.matrix(S))
 print(reconstruct(S,v,w))
