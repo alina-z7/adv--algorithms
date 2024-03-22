@@ -61,7 +61,6 @@ def lowest_freq_node(forest):
         if forest[i] < lfn:
             lfn = forest[i]
             pos_lfn = i
-
     return forest.pop(pos_lfn)
 
 t1 = lowest_freq_node(forest)
